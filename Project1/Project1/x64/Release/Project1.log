@@ -1,0 +1,11 @@
+﻿  main.c
+C:\Users\Sofia\Documents\parco\Project1\main.c(21,8): warning C4244: 'function': conversion from 'time_t' to 'unsigned int', possible loss of data
+C:\Users\Sofia\Documents\parco\Project1\main.c(66,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Sofia\Documents\parco\Project1\main.c(113,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+C:\Users\Sofia\Documents\parco\Project1\main.c(138,17): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  Generating code
+  2 of 6 functions (33.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  Finished generating code
+  Project1.vcxproj -> C:\Users\Sofia\Documents\parco\Project1\x64\Release\Project1.exe
