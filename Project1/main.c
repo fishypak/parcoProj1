@@ -21,7 +21,7 @@ int main() {
 	srand(time(NULL));
 
 	long long int* x, * y, * yasm, * xmmy, * ymmy;
-	size_t n = 1 << 29;
+	size_t n = 1 << 30;
 	LARGE_INTEGER start, end, freq;
 	const size_t ARRAY_BYTES = n * sizeof(long long int);
 	const size_t ARRAY_BYTES_Y = (n - 6) * sizeof(long long int);
@@ -144,7 +144,7 @@ int main() {
 			err += 1;
 	}
 	printf("Total Errors: %d", err);
-
+	
 	free(x);
 	free(y);
 	free(xmmy);

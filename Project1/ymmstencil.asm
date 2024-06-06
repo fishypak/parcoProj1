@@ -18,10 +18,15 @@ ymm1d:
     ; Number of times to loop
     shr rcx, 2              ; 
     sub rcx, 1              ; fix boundary check, going out of bounds sometimes if not divisible by 4
+    mov rdi, rcx
+    xor rax, rax          ; rax = 0 (index for Y)
 
 
     ; Perform stencil
-    Lsum:
+    stencil:
+        cmp rax, rdi
+        jge end          ; if rax >= rcx, exit loop
+
         ; Move values to registers
         vmovdqu ymm1, [rdx]     
         vmovdqu ymm2, [rdx + 8]  
@@ -31,6 +36,7 @@ ymm1d:
         vmovdqu ymm6, [rdx + 40] 
         vmovdqu ymm7, [rdx + 48] 
 
+        ; sum
         vpaddq  ymm1, ymm1, ymm2 
         vpaddq  ymm1, ymm1, ymm3 
         vpaddq  ymm1, ymm1, ymm4 
@@ -38,12 +44,13 @@ ymm1d:
         vpaddq  ymm1, ymm1, ymm6 
         vpaddq  ymm1, ymm1, ymm7 
 
-        vmovdqu [r8], ymm1     ; Store 4 results in Y vector
+        vmovdqu [r8], ymm1     ; Store in y vector
         add r8, 32
         add rdx, 32             ; Move to the next aligned address (4 elements * 8 bytes)
-        loop Lsum
+        loop stencil
 
             
+    end:
     ; Restore the stack and registers
     add rsp, 16
     pop rbp
