@@ -17,11 +17,27 @@ void cstencil(size_t n, long long int* x, long long int* y) {
 	}
 }
 
+void resetTimeArr(double* arr) {
+	for (int i = 0; i < 30; i++) {
+		arr[i] = 0;
+	}
+}
+
+double calcTotalTime(double* arr) {
+	double totalTime = 0;
+	for (int i = 0; i < 30; i++) {
+		totalTime += arr[i];
+		printf("");
+	}
+
+	return totalTime;
+}
+
 int main() {
 	srand(time(NULL));
 
 	long long int* x, * y, * yasm, * xmmy, * ymmy;
-	size_t n = 1 << 20;
+	size_t n = 1 << 26;
 	LARGE_INTEGER start, end, freq;
 	const size_t ARRAY_BYTES = n * sizeof(long long int);
 	const size_t ARRAY_BYTES_Y = (n - 6) * sizeof(long long int);
@@ -33,10 +49,7 @@ int main() {
 	yasm = (long long int*)malloc(ARRAY_BYTES_Y);
 	xmmy = (long long int*)malloc(ARRAY_BYTES_Y);
 	ymmy = (long long int*)malloc(ARRAY_BYTES_Y);
-	double timeTakenC, totalTC, avgTC;
-	double timeTakenN, totalTN, avgTN;
-	double timeTakenX, totalTX, avgTX;
-	double timeTakenY, totalTY, avgTY;
+	double timeTaken, avgT;
 	double timeTakenArr[30];
 	double totalTime;
 
@@ -51,30 +64,23 @@ int main() {
 		ymmy[i] = 0;
 	}
 	
-	for (int i = 0; i < 30; i++) {
-		timeTakenArr[i] = 0;
-	}
+	resetTimeArr(timeTakenArr);
 
 	//---------------- C STENCIL --------------------/*
 	printf("Total Elements: %zd\n", n);
-	totalTC = 0.0;
-	totalTime = 0;
 	for (int i = 0; i < 30; i++) {
 		QueryPerformanceCounter(&start);
 		cstencil(n, x, y);
 		QueryPerformanceCounter(&end);
-		timeTakenC = (double)(end.QuadPart - start.QuadPart) * 1000 / freq.QuadPart;
-		totalTC = totalTC + timeTakenC;
-		timeTakenArr[i] = timeTakenC;
+		timeTaken = (double)(end.QuadPart - start.QuadPart) * 1000 / freq.QuadPart;
+		timeTakenArr[i] = timeTaken;
 	}
 
-	for (int i = 0; i < 30; i++) {
-		totalTime += timeTakenArr[i];
-	}
+	totalTime = calcTotalTime(timeTakenArr);
 
-	avgTC = totalTime / 30.0;
-	printf("Total Time in C for 30 times: %f ms\nAverage Time in C: %f ms\n", totalTC, avgTC);
-	printf("new total time: %f ms\n", totalTime);
+	printf("\nTotal Time in C for 30 times: %f ms\n", totalTime);
+	avgT = totalTime / 30.0;
+	printf("Average Time in C: %f ms\n", avgT);
 	printf("First 10 elements in C: ");
 	for (int i = 0; i < 10; i++) {
 		printf("%lld ", y[i]);
@@ -84,29 +90,22 @@ int main() {
 		printf("%lld ", y[i]);
 	}
 
-	for (int i = 0; i < 30; i++) {
-		timeTakenArr[i] = 0;
-	}
+	resetTimeArr(timeTakenArr);
 	
 	//------------------ ASM STENCIL -------------------
-	totalTN = 0.0;
-	totalTime = 0;
 	for (int i = 0; i < 30; i++) {
 		QueryPerformanceCounter(&start);
 		asm1d(n, x, yasm);
 		QueryPerformanceCounter(&end);
-		timeTakenN = (double)(end.QuadPart - start.QuadPart) * 1000 / freq.QuadPart;
-		totalTN = totalTN + timeTakenN;
-		timeTakenArr[i] = timeTakenN;
+		timeTaken = (double)(end.QuadPart - start.QuadPart) * 1000 / freq.QuadPart;
+		timeTakenArr[i] = timeTaken;
 	}
 
-	for (int i = 0; i < 30; i++) {
-		totalTime += timeTakenArr[i];
-	}
+	totalTime = calcTotalTime(timeTakenArr);
 
-	avgTN = totalTime / 30.0;
-	printf("\n\n\nTotal Time in Non-SIMD for 30 times: %f ms\nAverage Time in Non-SIMD: %f ms\n", totalTN, avgTN);
-	printf("new total time: %f ms\n", totalTime);
+	printf("\n\n\nTotal Time in NON-SIMD for 30 times: %f ms\n", totalTime);
+	avgT = totalTime / 30.0;
+	printf("Average Time in NON-SIMD: %f ms\n", avgT);
 	printf("First 10 elements in Non-SIMD: ");
 	for (int i = 0; i < 10; i++) {
 		printf("%lld ", yasm[i]);
@@ -123,28 +122,22 @@ int main() {
 	}
 	printf("Total Errors: %d\n\n\n", err);
 
-	for (int i = 0; i < 30; i++) {
-		timeTakenArr[i] = 0;
-	}
+	resetTimeArr(timeTakenArr);
 	
 	//------------------ XMM STENCIL ------------------
-	totalTX = 0.0;
-	totalTime = 0;
 	for (int i = 0; i < 30; i++) {
 		QueryPerformanceCounter(&start);
 		xmm1D(n, x, xmmy);
 		QueryPerformanceCounter(&end);
-		timeTakenX = (double)(end.QuadPart - start.QuadPart) * 1000 / freq.QuadPart;
-		totalTX = totalTX + timeTakenX;
-		timeTakenArr[i] = timeTakenX;
+		timeTaken = (double)(end.QuadPart - start.QuadPart) * 1000 / freq.QuadPart;
+		timeTakenArr[i] = timeTaken;
 	}
 
-	for (int i = 0; i < 30; i++) {
-		totalTime += timeTakenArr[i];
-	}
+	totalTime = calcTotalTime(timeTakenArr);
 
-	avgTX = totalTime / 30.0;
-	printf("\nTotal Time in XMM for 30 times: %f ms\nAverage Time in XMM: %f ms\n", totalTime, avgTX);
+	printf("\nTotal Time in XMM for 30 times: %f ms\n", totalTime);
+	avgT = totalTime / 30.0;
+	printf("Average Time in XMM: %f ms\n", avgT);
 	printf("First 10 elements in XMM: ");
 	for (int i = 0; i < 10; i++) {
 		printf("%lld ", xmmy[i]);
@@ -160,28 +153,22 @@ int main() {
 	}
 	printf("Total Errors: %d\n\n\n", err);
 
-	for (int i = 0; i < 30; i++) {
-		timeTakenArr[i] = 0;
-	}
+	resetTimeArr(timeTakenArr);
 	
 // -------------------- YMM STENCIL -------------------
-	totalTY = 0.0;
-	totalTime = 0;
 	for (int i = 0; i < 30; i++) {
 		QueryPerformanceCounter(&start);
 		ymm1d(n, x, ymmy);
 		QueryPerformanceCounter(&end);
-		timeTakenY = (double)(end.QuadPart - start.QuadPart) * 1000 / freq.QuadPart;
-		totalTY = totalTY + timeTakenY;
-		timeTakenArr[i] = timeTakenY;
+		timeTaken = (double)(end.QuadPart - start.QuadPart) * 1000 / freq.QuadPart;
+		timeTakenArr[i] = timeTaken;
 	}
 
-	for (int i = 0; i < 30; i++) {
-		totalTime += timeTakenArr[i];
-	}
+	totalTime = calcTotalTime(timeTakenArr);
 
-	avgTY = totalTime / 30.0;
-	printf("\nTotal Time in YMM for 30 times: %f ms\nAverage Time in Y: %f ms\n", totalTime, avgTY);
+	printf("\nTotal Time in YMM for 30 times: %f ms\n", totalTime);
+	avgT = totalTime / 30.0;
+	printf("Average Time in YMM: %f ms\n", avgT);
 	printf("First 10 elements in YMM: ");
 	for (int i = 0; i < 10; i++) {
 		printf("%lld ", ymmy[i]);
@@ -199,9 +186,6 @@ int main() {
 
 	free(x);
 	free(y);
-	free(yasm);
-	free(xmmy);
-	free(ymmy);
 	
 
 	return 0;

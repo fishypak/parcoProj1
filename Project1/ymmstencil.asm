@@ -3,22 +3,17 @@ bits 64
 default rel
 global ymm1d
 
-; RCX - ARRAY_SIZE
-; RDX - Address of input vector x -> [rdx] is value of x 
-; R8 - Address of output vector y -> [r8] is value of y
-
 ymm1d:
-    ; Save registers and set up the stack frame
     push rsi
     push rdi
     push rbp
     mov rbp, rsp
-    sub rsp, 16   ; Allocate stack space for local variables if needed
+    sub rsp, 16  
 
     ; Number of times to loop
     mov rsi, rcx
-    shr rcx, 2              ; 
-    ;sub rcx, 1              ; fix boundary check, going out of bounds sometimes if not divisible by 4
+    shr rcx, 2               ; div by 4 
+    ;sub rcx, 1              
     jz end
 
     ; Perform stencil

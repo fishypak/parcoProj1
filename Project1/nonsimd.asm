@@ -1,32 +1,29 @@
 section .text
-
 bits 64
 default rel
 
 global asm1d
 asm1d:
-    sub RCX, 6    ;ignore edges/halos
+    sub rcx, 6    ; adjust the counter to ignore edge elements
 
-    block:
+process_elements:
+    xor rax, rax 
 
-        xor RAX, RAX    ;clear accumulator
+    ; load and accumulate values from the input array
+    mov rax, qword [rdx]       
+    add rax, qword [rdx+8] 
+    add rax, qword [rdx+16]
+    add rax, qword [rdx+24] 
+    add rax, qword [rdx+32]
+    add rax, qword [rdx+40] 
+    add rax, qword [rdx+48]
 
-        ; -- main sum operation --
-        ;unroll add 7x
-        mov RAX, qword [rdx]
-        add RAX, qword [rdx+8]
-        add RAX, qword [rdx+16]
-        add RAX, qword [rdx+24]
-        add RAX, qword [rdx+32]
-        add RAX, qword [rdx+40]
-        add RAX, qword [rdx+48]
+    mov [r8], rax               ; store the accumulated sum in the output array
 
-        mov [r8], RAX    ;store result in output
+    ; prepare for the next iteration
+    add r8, 8
+    add rdx, 8
 
-        ;move to next element
-        ADD R8, 8        ;shift 1 input forward
-        ADD RDX, 8        ;move to next output
-
-    LOOP block
+    loop process_elements        
 
     ret
