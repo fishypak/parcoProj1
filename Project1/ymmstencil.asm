@@ -16,16 +16,15 @@ ymm1d:
     sub rsp, 16   ; Allocate stack space for local variables if needed
 
     ; Number of times to loop
+    mov rsi, rcx
     shr rcx, 2              ; 
-    sub rcx, 1              ; fix boundary check, going out of bounds sometimes if not divisible by 4
-    mov rdi, rcx
-    xor rax, rax          ; rax = 0 (index for Y)
-
+    ;sub rcx, 1              ; fix boundary check, going out of bounds sometimes if not divisible by 4
+    jz end
 
     ; Perform stencil
     stencil:
-        cmp rax, rdi
-        jge end          ; if rax >= rcx, exit loop
+        cmp rcx, 0
+        jle end
 
         ; Move values to registers
         vmovdqu ymm1, [rdx]     
@@ -47,7 +46,8 @@ ymm1d:
         vmovdqu [r8], ymm1     ; Store in y vector
         add r8, 32
         add rdx, 32             ; Move to the next aligned address (4 elements * 8 bytes)
-        loop stencil
+        dec rcx
+        jmp stencil
 
             
     end:
