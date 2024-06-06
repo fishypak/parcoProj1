@@ -66,13 +66,10 @@ int main() {
 		timeTakenC = (double)(end.QuadPart - start.QuadPart) * 1000 / freq.QuadPart;
 		totalTC = totalTC + timeTakenC;
 		timeTakenArr[i] = timeTakenC;
-	//	printf("C run [%d]: %f ms\n", i, timeTakenC);
-	//	printf("C run [%d] total time: %f ms\n", i, totalTC);
 	}
 
 	for (int i = 0; i < 30; i++) {
 		totalTime += timeTakenArr[i];
-	//	printf("totalTime: %f ms\ntimeTakenArr[%d]: %f ms\n", totalTime, i, timeTakenArr[i]);
 	}
 
 	avgTC = totalTime / 30.0;
@@ -101,13 +98,10 @@ int main() {
 		timeTakenN = (double)(end.QuadPart - start.QuadPart) * 1000 / freq.QuadPart;
 		totalTN = totalTN + timeTakenN;
 		timeTakenArr[i] = timeTakenN;
-	//	printf("NON SIMD run [%d]: %f ms\n", i, timeTakenN);
-	//	printf("NON SIMD run [%d] total time: %f ms\n", i, totalTN);
 	}
 
 	for (int i = 0; i < 30; i++) {
 		totalTime += timeTakenArr[i];
-	//	printf("totalTime: %f ms\ntimeTakenArr[%d]: %f ms\n", totalTime, i, timeTakenArr[i]);
 	}
 
 	avgTN = totalTime / 30.0;
@@ -143,18 +137,14 @@ int main() {
 		timeTakenX = (double)(end.QuadPart - start.QuadPart) * 1000 / freq.QuadPart;
 		totalTX = totalTX + timeTakenX;
 		timeTakenArr[i] = timeTakenX;
-	//	printf("XMM run [%d]: %f ms\n", i, timeTakenX);
-	//	printf("XMM run [%d] total time: %f ms\n", i, totalTX);
 	}
 
 	for (int i = 0; i < 30; i++) {
 		totalTime += timeTakenArr[i];
-	//	printf("totalTime: %f ms\ntimeTakenArr[%d]: %f ms\n", totalTime, i, timeTakenArr[i]);
 	}
 
 	avgTX = totalTime / 30.0;
 	printf("\nTotal Time in XMM for 30 times: %f ms\nAverage Time in XMM: %f ms\n", totalTime, avgTX);
-	printf("new total time: %f ms\n", totalTime);
 	printf("First 10 elements in XMM: ");
 	for (int i = 0; i < 10; i++) {
 		printf("%lld ", xmmy[i]);
@@ -184,18 +174,14 @@ int main() {
 		timeTakenY = (double)(end.QuadPart - start.QuadPart) * 1000 / freq.QuadPart;
 		totalTY = totalTY + timeTakenY;
 		timeTakenArr[i] = timeTakenY;
-	//	printf("YMM run [%d]: %f ms\n", i, timeTakenY);
-	//	printf("YMM run [%d] total time: %f ms\n", i, totalTY);
 	}
 
 	for (int i = 0; i < 30; i++) {
 		totalTime += timeTakenArr[i];
-	//	printf("totalTime: %f ms\ntimeTakenArr[%d]: %f ms\n", totalTime, i, timeTakenArr[i]);
 	}
 
 	avgTY = totalTime / 30.0;
 	printf("\nTotal Time in YMM for 30 times: %f ms\nAverage Time in Y: %f ms\n", totalTime, avgTY);
-	printf("new total time: %f ms\n", totalTime);
 	printf("First 10 elements in YMM: ");
 	for (int i = 0; i < 10; i++) {
 		printf("%lld ", ymmy[i]);
