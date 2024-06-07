@@ -36,7 +36,7 @@ int main() {
 	srand(time(NULL));
 
 	long long int* x, * y, * yasm, * xmmy, * ymmy;
-	size_t n = 1 << 20;
+	size_t n = (1 << 26);
 	LARGE_INTEGER start, end, freq;
 	const size_t ARRAY_BYTES = n * sizeof(long long int);
 	const size_t ARRAY_BYTES_Y = (n - 6) * sizeof(long long int);
