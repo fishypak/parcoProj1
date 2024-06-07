@@ -197,6 +197,16 @@ ymm1d:
 
 Execution times for each implementation are measured in both DEBUG and RELEASE mode. The kernel is ran 30 times and the average runtime is calculated. A single run is also executed as a buffer to eliminate the first run performance outlier. Below are the tables of average runtime of each implementation in Debug and Release modes.
 
+| Mode         | Precision | C (ms)         | x86-64 ASM (ms) | x86 SIMD AVX2 ASM using XMM (ms) | x86 SIMD AVX2 ASM using YMM (ms) |
+|--------------|-----------|----------------|-----------------|----------------------------------|----------------------------------|
+| Debug Mode   | 2^20      | 1.930667       | 1.540277        | 0.920473                         | 0.423710                         |
+| Debug Mode   | 2^26      | 140.978020     | 541.459027      | 29.459390                        | 28.706993                        |
+| Debug Mode   | 2^30      | 99127.959200   | 78249.032600    | 52535.750600                     | 46851.980000                     |
+| Release Mode | 2^20      | 0.381130       | 8.790763        | 0.334360                         | 0.270087                         |
+| Release Mode | 2^26      | 30.060877      | 545.266213      | 30.458090                        | 28.226107                        |
+| Release Mode | 2^30      | 99127.959200   | 8722.438213     | 477.479007                       | 465.343303                       |
+
+
 ## Performance Analysis 
 
 ## Discussion
