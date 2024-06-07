@@ -275,15 +275,27 @@ The ymm1d assembly function uses YMM registers for SIMD (Single Instruction, Mul
 
 **YMM Output at 2 ^ 20 Debug Mode**
 
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/165a6be3-290b-4b8c-9e8d-4e136b1e615a)
+
 **YMM Output at 2 ^ 26 Debug Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/741637a8-7a97-437d-9706-35e76a67a9e0)
 
 **YMM Output at 2 ^ 30 Debug Mode**
 
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/b117686c-4584-40c0-bc46-5f51e300fd4e)
+
 **YMM Output at 2 ^ 20 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/227bb2a1-fc55-4367-96e5-c46958337483)
 
 **YMM Output at 2 ^ 26 Release Mode**
 
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/05f63e6a-b4d3-4fdb-97ad-310d6bb9681d)
+
 **YMM Output at 2 ^ 30 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/e2ad228d-fe4b-435f-a242-0b4eb1335805)
 
 ## Table of Execution Time
 
