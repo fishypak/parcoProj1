@@ -17,3 +17,28 @@ Example: X-> 1.2.3.4.5.6.7.8: output: Y-> 28.35
 
 ### Screenshots
 
+## x86-64 ASM
+
+### Code 
+
+### Screenshots
+
+## x86 SIMD AVX2 ASM using XMM
+
+### Code 
+
+### Screenshots
+
+## x86 SIMD AVX2 ASM using YMM
+
+### Code 
+
+### Screenshots
+
+## Table of Execution Time
+
+## Performance Analysis 
+
+## Discussion
+
+Discuss the problems encountered and solutions made, unique methodology used, AHA moments, etc. 
