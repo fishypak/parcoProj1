@@ -323,8 +323,8 @@ Execution times for each implementation are measured in both DEBUG and RELEASE m
 
 In Debug mode, we observe that the execution times decrease significantly with the more advanced implementations of the stencil computation, particularly when leveraging SIMD capabilities:
 
-- C Implementation: The slowest across all precisions, which is expected due to the lack of parallel processing capabilities.
-- x86-64 ASM: Shows a moderate performance improvement over the C implementation due to the more direct control over hardware, but still processes data sequentially.
+- C Implementation: The slowest across all precisions.
+- x86-64 ASM: Shows a moderate performance improvement over the C implementation due to the more direct control over hardware, but still processes data sequentially. For example, at precision 2^30, if we take the execution time of the C implementation as 3304.265307 ms and the ASM time as 2608.301087 ms, the ASM implementation is about 3304.265307/2608.301087 ≈ 1.27 times faster than the C implementation.
 - x86 SIMD AVX2 using XMM: Offers a considerable performance boost by processing multiple data points simultaneously. For instance, at precision 2^30, it runs approximately 1.9 times faster than the x86-64 ASM implementation.
 - x86 SIMD AVX2 using YMM: The fastest implementation due to its ability to handle even more data per operation than XMM. At precision 2^30, YMM runs around 1.1 times faster than XMM and about 2.1 times faster than x86-64 ASM.
 
