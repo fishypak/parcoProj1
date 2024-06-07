@@ -26,27 +26,27 @@ void cstencil(size_t n, long long int* x, long long int* y) {
 
 ### Screenshots
 
-**2 ^ 20 Debug Mode**
+**C Output at 2 ^ 20 Debug Mode**
 
 ![image](https://github.com/fishypak/parcoProj1/assets/98962170/c852a56c-97b7-460e-99fe-b19b3fc38b89)
 
-**2 ^ 26 Debug Mode**
+**C Output at 2 ^ 26 Debug Mode**
 
 ![image](https://github.com/fishypak/parcoProj1/assets/98962170/ba88e9f7-d08d-40a6-b07b-3352660da508)
 
-**2 ^ 30 Debug Mode**
+**C Output at 2 ^ 30 Debug Mode**
 
 ![image](https://github.com/fishypak/parcoProj1/assets/98962170/9c525019-bb29-4a14-8f46-0ab3c3535fb6)
 
-**2 ^ 20 Release Mode**
+**C Output at 2 ^ 20 Release Mode**
 
 ![image](https://github.com/fishypak/parcoProj1/assets/98962170/8a71fa72-3074-4b43-b9b6-049387f93fa1)
 
-**2 ^ 26 Release Mode**
+**C Output at 2 ^ 26 Release Mode**
 
 ![image](https://github.com/fishypak/parcoProj1/assets/98962170/1bc68f86-59ae-4381-bdfa-6413253e7003)
 
-**2 ^ 30 Release Mode**
+**C Output at 2 ^ 30 Release Mode**
 
 ![image](https://github.com/fishypak/parcoProj1/assets/98962170/816390f9-2fda-407c-8483-a7cc67907fc8)
 
