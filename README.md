@@ -183,6 +183,18 @@ The xmm1D assembly function efficiently implements a SIMD-based stencil operatio
 
 ### Screenshots
 
+**XMM Output at 2 ^ 20 Debug Mode**
+
+**XMM Output at 2 ^ 26 Debug Mode**
+
+**XMM Output at 2 ^ 30 Debug Mode**
+
+**XMM Output at 2 ^ 20 Release Mode**
+
+**XMM Output at 2 ^ 26 Release Mode**
+
+**XMM Output at 2 ^ 30 Release Mode**
+
 ## x86 SIMD AVX2 ASM using YMM
 
 ### Code 
@@ -248,6 +260,18 @@ ymm1d:
 The ymm1d assembly function uses YMM registers for SIMD (Single Instruction, Multiple Data) operations to accelerate the processing of a stencil computation over 64-bit integers in an array. The function sets up by pushing essential registers onto the stack for later restoration and adjusts the stack pointer for local usage. It divides the total number of elements by 4 (using shr rcx, 2), optimizing the loop to process four elements simultaneously, reflecting the 256-bit width of YMM registers that handle four 64-bit integers at once. Within the loop, it loads seven consecutive data blocks into YMM registers (ymm1 to ymm7), sums them using vpaddq, and stores the result back into the output array. The pointers are adjusted by 32 bytes (4 elements of 8 bytes each) for the next set of inputs and outputs. The loop decrements and continues until all elements are processed, making effective use of the wider YMM registers to enhance computational throughput and efficiency for large data sets.
 
 ### Screenshots
+
+**YMM Output at 2 ^ 20 Debug Mode**
+
+**YMM Output at 2 ^ 26 Debug Mode**
+
+**YMM Output at 2 ^ 30 Debug Mode**
+
+**YMM Output at 2 ^ 20 Release Mode**
+
+**YMM Output at 2 ^ 26 Release Mode**
+
+**YMM Output at 2 ^ 30 Release Mode**
 
 ## Table of Execution Time
 
