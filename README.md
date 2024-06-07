@@ -26,6 +26,16 @@ void cstencil(size_t n, long long int* x, long long int* y) {
 
 ### Screenshots
 
+1 << 20 Debug Mode
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/c852a56c-97b7-460e-99fe-b19b3fc38b89)
+
+1 << 26 Debug Mode
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/ba88e9f7-d08d-40a6-b07b-3352660da508)
+
+1 << 30 Debug Mode
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/9c525019-bb29-4a14-8f46-0ab3c3535fb6)
+
+
 ## x86-64 ASM
 
 ### Code 
