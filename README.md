@@ -92,6 +92,30 @@ The assembly code asm1d implements a non-SIMD stencil computation for an array. 
 
 ### Screenshots
 
+**x86-64 Output at 2 ^ 20 Debug Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/227ef943-04ac-4d62-badb-543bf4d88450)
+
+**x86-64 Output at 2 ^ 26 Debug Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/3afc17b6-bc3b-4e70-bd8b-897079de3f89)
+
+**x86-64 Output at 2 ^ 30 Debug Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/38d786e1-6b30-4911-aa12-58390d9cca4f)
+
+**x86-64 Output at 2 ^ 20 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/4fe02eb8-110f-4e46-9dcd-84c493c8ec10)
+
+**x86-64 Output at 2 ^ 26 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/4735256d-a53a-4891-bee3-9b7aedc4986a)
+
+**x86-64 Output at 2 ^ 30 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/445876ae-45a2-4dea-a5cd-7ecff8d8fb31)
+
 ## x86 SIMD AVX2 ASM using XMM
 
 ### Code 
