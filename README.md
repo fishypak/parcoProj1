@@ -9,3 +9,11 @@ Output: store result in vector Y. Also, display the result of first ten elements
 
 Example: X-> 1.2.3.4.5.6.7.8: output: Y-> 28.35
 
+## Implementation
+
+## C
+
+### Code 
+
+### Screenshots
+
