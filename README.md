@@ -197,14 +197,22 @@ ymm1d:
 
 Execution times for each implementation are measured in both DEBUG and RELEASE mode. The kernel is ran 30 times and the average runtime is calculated. A single run is also executed as a buffer to eliminate the first run performance outlier. Below are the tables of average runtime of each implementation in Debug and Release modes.
 
-| Mode         | Precision | C (ms)         | x86-64 ASM (ms) | x86 SIMD AVX2 ASM using XMM (ms) | x86 SIMD AVX2 ASM using YMM (ms) |
-|--------------|-----------|----------------|-----------------|----------------------------------|----------------------------------|
-| Debug Mode   | 2^20      | 1.930667       | 1.540277        | 0.920473                         | 0.423710                         |
-| Debug Mode   | 2^26      | 128.821770     | 98.906903       | 66.722230                        | 60.782260                        |
-| Debug Mode   | 2^30      | 3304.265307    | 2608.301087     | 1751.191687                      | 1561.732667                      |
-| Release Mode | 2^20      | 0.414023       | 1.496637        | 0.657480                         | 0.369903                         |
-| Release Mode | 2^26      | 63.689330      | 98.401087       | 65.950987                        | 60.936833                        |
-| Release Mode | 2^30      | 2348.976547    | 2500.941850     | 1725.390667                      | 1489.474447                      |
+### Debug Mode
+
+| Precision | C (ms)        | x86-64 ASM (ms) | x86 SIMD AVX2 ASM using XMM (ms) | x86 SIMD AVX2 ASM using YMM (ms) |
+|-----------|---------------|-----------------|----------------------------------|----------------------------------|
+| 2^20      | 1.930667      | 1.540277        | 0.920473                         | 0.423710                         |
+| 2^26      | 128.821770    | 98.906903       | 66.722230                        | 60.782260                        |
+| 2^30      | 3304.265307   | 2608.301087     | 1751.191687                      | 1561.732667                      |
+
+### Release Mode
+
+| Precision | C (ms)        | x86-64 ASM (ms) | x86 SIMD AVX2 ASM using XMM (ms) | x86 SIMD AVX2 ASM using YMM (ms) |
+|-----------|---------------|-----------------|----------------------------------|----------------------------------|
+| 2^20      | 0.414023      | 1.496637        | 0.657480                         | 0.369903                         |
+| 2^26      | 63.689330     | 98.401087       | 65.950987                        | 60.936833                        |
+| 2^30      | 2348.976547   | 2500.941850     | 1725.390667                      | 1489.474447                      |
+
 
 
 ## Performance Analysis 
