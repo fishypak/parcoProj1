@@ -23,6 +23,7 @@ void cstencil(size_t n, long long int* x, long long int* y) {
 	}
 }
 ```
+The cstencil function performs a stencil computation on an input array x of long long int values, outputting the result to array y. The function processes elements from x[3] to x[n-4], calculating the sum of seven contiguous elements centered on each x[i] from x[i-3] to x[i+3], and stores this sum in y[i-3]. This ensures that output starts from the beginning of the y array and avoids out-of-bound accesses, making the function applicable in domains like image processing where local neighborhoods influence computational results.
 
 ### Screenshots
 
