@@ -10,6 +10,11 @@ ymm1d:
     mov rbp, rsp
     sub rsp, 16  
 
+    sub rsp,0x20
+	vmovdqu [rsp],ymm6
+	sub rsp,0x20
+	vmovdqu [rsp],ymm7
+
     ; Number of times to loop
     mov rsi, rcx
     shr rcx, 2               ; div by 4 
@@ -47,6 +52,10 @@ ymm1d:
             
     end:
     ; Restore the stack and registers
+    vmovdqu ymm7,[rsp]
+	add rsp,0x20
+	vmovdqu ymm6,[rsp]
+	add rsp,0x20
     add rsp, 16
     pop rbp
     pop rdi

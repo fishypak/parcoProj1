@@ -13,6 +13,9 @@ xmm1D:
     mov rbp, rsp
     sub rsp, 16   ; Allocate stack space for local variables if needed
 
+    sub rsp,0x10
+	movdqu [rsp],xmm6
+
     ; Initialize counters and pointers
     mov rdi, rcx      ; Store the original ARRAY_SIZE
     sub rdi, 1        ; Adjust for accessing up to i+3
@@ -49,6 +52,8 @@ main_loop:
 
 loop_end:
     ; Restore the stack and registers
+    movdqu xmm6,[rsp]
+	add rsp,0x10
     add rsp, 16
     pop rbp
     pop rdi
