@@ -321,7 +321,16 @@ Execution times for each implementation are measured in both DEBUG and RELEASE m
 
 ## Performance Analysis 
 
-Analyze performance of different kernels, how many times faster, why is it faster, etc. As can be seen from the tables above, ....
+In Debug mode, we observe that the execution times decrease significantly with the more advanced implementations of the stencil computation, particularly when leveraging SIMD capabilities:
+
+- C Implementation: The slowest across all precisions, which is expected due to the lack of parallel processing capabilities.
+- x86-64 ASM: Shows a moderate performance improvement over the C implementation due to the more direct control over hardware, but still processes data sequentially.
+- x86 SIMD AVX2 using XMM: Offers a considerable performance boost by processing multiple data points simultaneously. For instance, at precision 2^30, it runs approximately 1.9 times faster than the x86-64 ASM implementation.
+- x86 SIMD AVX2 using YMM: The fastest implementation due to its ability to handle even more data per operation than XMM. At precision 2^30, YMM runs around 1.1 times faster than XMM and about 2.1 times faster than x86-64 ASM.
+
+The increasing efficiency from C to YMM in Debug mode is attributed to better utilization of the CPU's ability to perform parallel operations, reducing the number of instructions and memory accesses needed to complete the same amount of work.
+
+In Release mode, the C implementation outperforms the x86-64 ASM and the x86 SIMD AVX2 using XMM implementations at certain precisions. This is due to the fact that in release mode, the compiler optimizes the C code, allowing it to match or exceed the performance of manually written assembly.
 
 ## Discussion
 
