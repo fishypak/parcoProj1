@@ -23,7 +23,7 @@ void cstencil(size_t n, long long int* x, long long int* y) {
 	}
 }
 ```
-The cstencil function performs a stencil computation on an input array x of long long int values, outputting the result to array y. The function processes elements from x[3] to x[n-4], calculating the sum of seven contiguous elements centered on each x[i] from x[i-3] to x[i+3], and stores this sum in y[i-3]. This ensures that output starts from the beginning of the y array and avoids out-of-bound accesses, making the function applicable in domains like image processing where local neighborhoods influence computational results.
+The cstencil function performs a stencil computation on an input array x of long long int values, outputting the result to array y. The function processes elements from x[3] to x[n-4], calculating the sum of seven contiguous elements centered on each x[i] from x[i-3] to x[i+3], and stores this sum in y[i-3]. This ensures that output starts from the beginning of the y array and avoids out-of-bound accesses.
 
 ### Screenshots
 
@@ -87,6 +87,8 @@ process_elements:
 
     ret
 ```
+
+The assembly code asm1d implements a non-SIMD stencil computation for an array. The code adjusts the loop counter to skip processing the first and last three elements of the array for boundary safety. Inside the loop, it zeros out the accumulator register rax, loads and sums seven consecutive 64-bit integers from the input array x (pointed to by rdx), and stores the accumulated result into the output array y (pointed to by r8). After storing the result, the pointers r8 and rdx are incremented to the next element, and the loop continues until all valid elements have been processed.
 
 ### Screenshots
 
@@ -153,6 +155,8 @@ loop_end:
     ret
 ```
 
+The xmm1D assembly function efficiently implements a SIMD-based stencil operation using XMM registers to accelerate processing of 64-bit integers. The function sets up by saving essential registers and allocating stack space, then it initializes counters to manage array access within bounds. Within the main loop, it loads consecutive elements from the input array into XMM registers (xmm0 to xmm6) to handle seven adjacent values at once. Using the paddq instruction, these values are summed in a packed format, exploiting SIMD capabilities to perform multiple additions in parallel, thus significantly enhancing performance. The summed result is then stored back into the output array using movdqu, and the loop continues until all applicable elements are processed.
+
 ### Screenshots
 
 ## x86 SIMD AVX2 ASM using YMM
@@ -216,6 +220,8 @@ ymm1d:
 
     ret
 ```
+
+The ymm1d assembly function uses YMM registers for SIMD (Single Instruction, Multiple Data) operations to accelerate the processing of a stencil computation over 64-bit integers in an array. The function sets up by pushing essential registers onto the stack for later restoration and adjusts the stack pointer for local usage. It divides the total number of elements by 4 (using shr rcx, 2), optimizing the loop to process four elements simultaneously, reflecting the 256-bit width of YMM registers that handle four 64-bit integers at once. Within the loop, it loads seven consecutive data blocks into YMM registers (ymm1 to ymm7), sums them using vpaddq, and stores the result back into the output array. The pointers are adjusted by 32 bytes (4 elements of 8 bytes each) for the next set of inputs and outputs. The loop decrements and continues until all elements are processed, making effective use of the wider YMM registers to enhance computational throughput and efficiency for large data sets.
 
 ### Screenshots
 
