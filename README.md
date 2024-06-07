@@ -195,6 +195,8 @@ ymm1d:
 
 ## Table of Execution Time
 
+Execution times for each implementation are measured in both DEBUG and RELEASE mode. The kernel is ran 30 times and the average runtime is calculated. A single run is also executed as a buffer to eliminate the first run performance outlier. Below are the tables of average runtime of each implementation in Debug and Release modes.
+
 ## Performance Analysis 
 
 ## Discussion
