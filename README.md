@@ -321,6 +321,8 @@ Execution times for each implementation are measured in both DEBUG and RELEASE m
 
 ## Performance Analysis 
 
+Analyze performance of different kernels, how many times faster, why is it faster, etc. As can be seen from the tables above, ....
+
 ## Discussion
 
 Discuss the problems encountered and solutions made, unique methodology used, AHA moments, etc. 
