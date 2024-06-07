@@ -321,7 +321,7 @@ Execution times for each implementation are measured in both DEBUG and RELEASE m
 
 ## Performance Analysis 
 
-In Debug mode, we observe that the execution times decrease significantly with the more advanced implementations of the stencil computation, particularly when leveraging SIMD capabilities:
+In Debug mode, we observed that the execution times decrease significantly with the more advanced implementations of the stencil computation, particularly when leveraging SIMD capabilities:
 
 - C Implementation: The slowest across all precisions.
 - x86-64 ASM: Shows a moderate performance improvement over the C implementation due to the more direct control over hardware, but still processes data sequentially. For example, at precision 2^30, if we take the execution time of the C implementation as 3304.265307 ms and the ASM time as 2608.301087 ms, the ASM implementation is about 3304.265307/2608.301087 ≈ 1.27 times faster than the C implementation.
