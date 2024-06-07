@@ -185,15 +185,27 @@ The xmm1D assembly function efficiently implements a SIMD-based stencil operatio
 
 **XMM Output at 2 ^ 20 Debug Mode**
 
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/8d147aa6-76ca-4bd2-a3d5-50d1b3bba541)
+
 **XMM Output at 2 ^ 26 Debug Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/438971d1-6f14-420f-85c9-5d207b2ae36f)
 
 **XMM Output at 2 ^ 30 Debug Mode**
 
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/86b58bcb-e8f6-4d40-8480-22a024b00862)
+
 **XMM Output at 2 ^ 20 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/65dd2830-5b1a-4417-927b-54c4a7669e03)
 
 **XMM Output at 2 ^ 26 Release Mode**
 
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/b6557d62-b92b-4e3c-be15-bcb09c3b3cbd)
+
 **XMM Output at 2 ^ 30 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/37bcf1a3-7820-440c-a6bd-d35846514f73)
 
 ## x86 SIMD AVX2 ASM using YMM
 
