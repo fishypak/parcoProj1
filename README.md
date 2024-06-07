@@ -299,9 +299,9 @@ The ymm1d assembly function uses YMM registers for SIMD (Single Instruction, Mul
 
 ## Table of Execution Time
 
-Testing done on these PC specs:
+**Testing done on these PC specs:**
 - i9-13700K
-- 32GB RAM
+- 32GB 2400 MHz RAM
 
 Execution times for each implementation are measured in both DEBUG and RELEASE mode. The kernel is ran 30 times and the average runtime is calculated. A single run is also executed as a buffer to eliminate the first run performance outlier. Below are the tables of average runtime of each implementation in Debug and Release modes.
 
