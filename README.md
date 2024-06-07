@@ -92,6 +92,30 @@ The assembly code asm1d implements a non-SIMD stencil computation for an array. 
 
 ### Screenshots
 
+**x86-64 Output at 2 ^ 20 Debug Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/227ef943-04ac-4d62-badb-543bf4d88450)
+
+**x86-64 Output at 2 ^ 26 Debug Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/3afc17b6-bc3b-4e70-bd8b-897079de3f89)
+
+**x86-64 Output at 2 ^ 30 Debug Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/38d786e1-6b30-4911-aa12-58390d9cca4f)
+
+**x86-64 Output at 2 ^ 20 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/4fe02eb8-110f-4e46-9dcd-84c493c8ec10)
+
+**x86-64 Output at 2 ^ 26 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/4735256d-a53a-4891-bee3-9b7aedc4986a)
+
+**x86-64 Output at 2 ^ 30 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/445876ae-45a2-4dea-a5cd-7ecff8d8fb31)
+
 ## x86 SIMD AVX2 ASM using XMM
 
 ### Code 
@@ -159,6 +183,30 @@ The xmm1D assembly function efficiently implements a SIMD-based stencil operatio
 
 ### Screenshots
 
+**XMM Output at 2 ^ 20 Debug Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/8d147aa6-76ca-4bd2-a3d5-50d1b3bba541)
+
+**XMM Output at 2 ^ 26 Debug Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/438971d1-6f14-420f-85c9-5d207b2ae36f)
+
+**XMM Output at 2 ^ 30 Debug Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/86b58bcb-e8f6-4d40-8480-22a024b00862)
+
+**XMM Output at 2 ^ 20 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/65dd2830-5b1a-4417-927b-54c4a7669e03)
+
+**XMM Output at 2 ^ 26 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/b6557d62-b92b-4e3c-be15-bcb09c3b3cbd)
+
+**XMM Output at 2 ^ 30 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/37bcf1a3-7820-440c-a6bd-d35846514f73)
+
 ## x86 SIMD AVX2 ASM using YMM
 
 ### Code 
@@ -225,6 +273,30 @@ The ymm1d assembly function uses YMM registers for SIMD (Single Instruction, Mul
 
 ### Screenshots
 
+**YMM Output at 2 ^ 20 Debug Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/165a6be3-290b-4b8c-9e8d-4e136b1e615a)
+
+**YMM Output at 2 ^ 26 Debug Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/741637a8-7a97-437d-9706-35e76a67a9e0)
+
+**YMM Output at 2 ^ 30 Debug Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/b117686c-4584-40c0-bc46-5f51e300fd4e)
+
+**YMM Output at 2 ^ 20 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/227bb2a1-fc55-4367-96e5-c46958337483)
+
+**YMM Output at 2 ^ 26 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/05f63e6a-b4d3-4fdb-97ad-310d6bb9681d)
+
+**YMM Output at 2 ^ 30 Release Mode**
+
+![image](https://github.com/fishypak/parcoProj1/assets/98962170/e2ad228d-fe4b-435f-a242-0b4eb1335805)
+
 ## Table of Execution Time
 
 Execution times for each implementation are measured in both DEBUG and RELEASE mode. The kernel is ran 30 times and the average runtime is calculated. A single run is also executed as a buffer to eliminate the first run performance outlier. Below are the tables of average runtime of each implementation in Debug and Release modes.
@@ -249,6 +321,19 @@ Execution times for each implementation are measured in both DEBUG and RELEASE m
 
 ## Performance Analysis 
 
+In Debug mode, we observed that the execution times decrease significantly with the more advanced implementations of the stencil computation, particularly when leveraging SIMD capabilities:
+
+- C Implementation: The slowest across all precisions.
+- x86-64 ASM: Shows a moderate performance improvement over the C implementation due to the more direct control over hardware, but still processes data sequentially. For example, at precision 2^30, if we take the execution time of the C implementation as 3304.265307 ms and the ASM time as 2608.301087 ms, the ASM implementation is about 3304.265307/2608.301087 ≈ 1.27 times faster than the C implementation.
+- x86 SIMD AVX2 using XMM: Offers a considerable performance boost by processing multiple data points simultaneously. For instance, at precision 2^30, it runs approximately 1.9 times faster than the x86-64 ASM implementation.
+- x86 SIMD AVX2 using YMM: The fastest implementation due to its ability to handle even more data per operation than XMM. At precision 2^30, YMM runs around 1.1 times faster than XMM and about 2.1 times faster than x86-64 ASM.
+
+The increasing efficiency from C to YMM in Debug mode is attributed to better utilization of the CPU's ability to perform parallel operations, reducing the number of instructions and memory accesses needed to complete the same amount of work.
+
+In Release mode, the C implementation outperforms the x86-64 ASM and the x86 SIMD AVX2 using XMM implementations at certain precisions. This is due to the fact that in release mode, the compiler optimizes the C code, allowing it to match or exceed the performance of manually written assembly.
+
 ## Discussion
 
-Discuss the problems encountered and solutions made, unique methodology used, AHA moments, etc. 
+_Discuss the problems encountered and solutions made, unique methodology used, AHA moments, etc._
+
+The main problem we encountered was running the program in release mode. At first, the total time and average times for the XMM and YMM implementations were either 0 or inf. When we noticed this, we tried to print every the time for every run. Printing every run showed us that the total time was being replaced with the current time instead of being added. The solution we found was creating an array that added each number/current time in increments. However, an AHA moment was when one of our group members mentioned that we just needed to push and pop non-volatile registers including YMM6, YMM7, and XMM6. After implementing the proper push and pop, the program ran in release mode properly.  
