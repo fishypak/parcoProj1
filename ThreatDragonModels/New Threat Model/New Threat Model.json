@@ -1079,6 +1079,7 @@
             },
             "visible": true,
             "shape": "store",
+            "zIndex": 14,
             "ports": {
               "groups": {
                 "top": {
@@ -1162,7 +1163,6 @@
               ]
             },
             "id": "e5a9107a-8760-4dcb-8d26-27b7647c80f9",
-            "zIndex": 14,
             "data": {
               "type": "tm.Store",
               "name": "SQL Database",
@@ -1212,13 +1212,14 @@
                 "text": "Authorization \nProvider"
               },
               "body": {
-                "stroke": "#333333",
-                "strokeWidth": 1.5,
+                "stroke": "red",
+                "strokeWidth": 2.5,
                 "strokeDasharray": null
               }
             },
             "visible": true,
             "shape": "actor",
+            "zIndex": 15,
             "ports": {
               "groups": {
                 "top": {
@@ -1302,16 +1303,40 @@
               ]
             },
             "id": "86671eab-5124-4e62-8400-107762242648",
-            "zIndex": 15,
             "data": {
               "type": "tm.Actor",
               "name": "Authorization \nProvider",
               "description": "",
               "outOfScope": false,
               "reasonOutOfScope": "",
-              "hasOpenThreats": false,
+              "hasOpenThreats": true,
               "providesAuthentication": false,
-              "threats": []
+              "threats": [
+                {
+                  "id": "2044af87-f6b8-4e1f-ae0c-b5075aec027d",
+                  "title": "Elevation of Permission",
+                  "status": "Open",
+                  "severity": "TBA",
+                  "type": "Spoofing",
+                  "description": "Provide a description for this threat",
+                  "mitigation": "Provide remediation for this threat or a reason if status is N/A",
+                  "modelType": "STRIDE",
+                  "new": false,
+                  "number": 11,
+                  "score": ""
+                }
+              ],
+              "threatFrequency": {
+                "spoofing": 1,
+                "repudiation": 0
+              }
+            },
+            "tools": {
+              "items": [
+                "boundary",
+                "button-remove"
+              ],
+              "name": null
             }
           }
         ]
@@ -1319,6 +1344,6 @@
     ],
     "diagramTop": 1,
     "reviewer": "",
-    "threatTop": 10
+    "threatTop": 11
   }
 }
